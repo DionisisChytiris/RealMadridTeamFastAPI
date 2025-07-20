@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from configuration import collection
 from database.schemas import all_players
 from database.models import Team
@@ -6,6 +7,14 @@ from bson.objectid import ObjectId
 
 app = FastAPI()
 router = APIRouter()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://real-madrid-team-fast-api.vercel.app/"],  # 👈 or use ["*"] during development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @router.get("/")
 async def get_all_players():
