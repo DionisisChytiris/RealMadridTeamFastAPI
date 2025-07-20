@@ -14,3 +14,6 @@ def individual_data(player):
 
 def all_players(players):
     return [individual_data(player) for player in players]
+
+def all_players(cursor):
+    return [individual_data(player) for player in cursor]

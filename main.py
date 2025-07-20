@@ -4,6 +4,7 @@ from configuration import collection
 from database.schemas import all_players
 from database.models import Team
 from bson.objectid import ObjectId
+from pymongo import ReturnDocument
 
 app = FastAPI()
 router = APIRouter()
@@ -39,7 +40,7 @@ async def update_player(player_id: str, updated_player: Team):
     result = collection.find_one_and_update(
         {"_id": ObjectId(player_id)},
         {"$set": dict(updated_player)},
-        return_document=True,
+        return_document=ReturnDocument.AFTER,  # <-- fix here
     )
     if result:
         return {"message": "Player updated successfully"}
