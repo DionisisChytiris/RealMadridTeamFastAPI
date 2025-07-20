@@ -8,7 +8,8 @@ def individual_data(player):
         "placebirth": player["placebirth"],
         "datebirth": player["datebirth"],
         "weight": player["weight"],
-        "height": player["height"]
+        "height": player["height"],
+         "img": player.get("img", "")  # ✅ Include image, use default empty string if missing
     }
 
 def all_players(players):

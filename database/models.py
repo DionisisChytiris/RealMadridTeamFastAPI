@@ -10,3 +10,4 @@ class Team(BaseModel):
     datebirth: str
     weight: str
     height: str
+    img:str
