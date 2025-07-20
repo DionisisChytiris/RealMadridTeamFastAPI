@@ -10,7 +10,7 @@ app = FastAPI()
 router = APIRouter()
 
 origins = [
-    "https://real-madrid-app.vercel.app",  # ✅ Production frontend
+    "https://real-madrid-website.vercel.app",  # ✅ Production frontend
     "http://localhost:5173",               # ✅ Local development frontend
 ]
 
