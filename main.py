@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@router.get("/")
+@router.get("/", tags=["Players"])
 async def get_all_players():
     data = collection.find()
     return all_players(data)
@@ -33,17 +33,36 @@ async def create_player(new_player:Team):
         return {"status_code": 200, "id": str(res.inserted_id)}
     except Exception as e:
         return HTTPException(status_code=500, detail=f"Some error occured{e}")
-    
+
 @router.put("/{player_id}")
-async def update_player(player_id:str, updated_player:Team):
-     collection.find_one_and_update({"_id": ObjectId(player_id)}, {"$set":dict(updated_player)})
+async def update_player(player_id: str, updated_player: Team):
+    result = collection.find_one_and_update(
+        {"_id": ObjectId(player_id)},
+        {"$set": dict(updated_player)},
+        return_document=True,
+    )
+    if result:
+        return {"message": "Player updated successfully"}
+    raise HTTPException(status_code=404, detail="Player not found")
+
 
 @router.delete("/{player_id}")
 async def delete_player(player_id: str):
-    collection.find_one_and_delete({"_id":ObjectId(player_id)})
+    result = collection.find_one_and_delete({"_id": ObjectId(player_id)})
+    if result:
+        return {"message": "Player deleted successfully"}
+    raise HTTPException(status_code=404, detail="Player not found")
+    
+# @router.put("/{player_id}")
+# async def update_player(player_id:str, updated_player:Team):
+#      collection.find_one_and_update({"_id": ObjectId(player_id)}, {"$set":dict(updated_player)})
+
+# @router.delete("/{player_id}")
+# async def delete_player(player_id: str):
+#     collection.find_one_and_delete({"_id":ObjectId(player_id)})
 
 
-app.include_router(router)
+app.include_router(router, prefix="/players")
 
 # @app.get('/')
 # async def homepage():
