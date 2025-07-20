@@ -10,7 +10,7 @@ router = APIRouter()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://real-madrid-app.vercel.app"],  # ✅ your frontend URL
+    allow_origins=["https://real-madrid-team-fast-api.vercel.app/"],  # ✅ your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
