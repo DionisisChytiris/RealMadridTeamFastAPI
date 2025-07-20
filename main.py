@@ -8,12 +8,14 @@ from bson.objectid import ObjectId
 app = FastAPI()
 router = APIRouter()
 
+origins = [
+    "https://real-madrid-app.vercel.app",  # ✅ Production frontend
+    "http://localhost:5173",               # ✅ Local development frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-  "https://real-madrid-website.vercel.app",
-  "http://localhost:5174"
-],  # ✅ your frontend URL
+    allow_origins=origins,  # ✅ your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
