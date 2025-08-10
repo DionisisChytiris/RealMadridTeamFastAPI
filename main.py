@@ -27,6 +27,10 @@ async def get_all_players():
     data = collection.find()
     return all_players(data)
 
+@app.get("/")
+def root():
+    return {"message": "FastAPI backend is running. Use POST /players"}
+
 @router.post("/")
 async def create_player(new_player:Team):
     try:
