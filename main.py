@@ -29,7 +29,7 @@ async def get_all_players():
 
 @app.get("/")
 def root():
-    return {"message": "FastAPI backend is running. Use POST /players"}
+    return {"message": "FastAPI backend is running. Use tag /players"}
 
 @router.post("/")
 async def create_player(new_player:Team):
