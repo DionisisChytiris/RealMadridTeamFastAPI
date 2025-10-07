@@ -69,6 +69,3 @@ async def delete_player(player_id: str):
 
 app.include_router(router, prefix="/players")
 
-# @app.get('/')
-# async def homepage():
-#     return {"message": "Hello world!!!"}
