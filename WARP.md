@@ -9,6 +9,7 @@ Common commands
   - pip install -r requirements.txt
 - Run locally (auto-reload)
   - uvicorn main:app --reload
+or  - python -m uvicorn main:app --reload
 - Docker
   - docker build -t realmadrid-fastapi -f .Dockerfile .
   - docker run -p 8000:8000 realmadrid-fastapi
